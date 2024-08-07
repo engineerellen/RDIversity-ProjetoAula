@@ -1,11 +1,12 @@
 ﻿using MeuPrimeiroProjeto.Aula1;
+using MeuPrimeiroProjeto.Aula2;
 using System.Text;
 
-
+//Aula 2- condicoes
+TesteCondicoes();
 
 //Exercicio - aula 1
 ExecutarTesteTemperatura();
-
 
 /*
  tipos primitivos
@@ -18,9 +19,7 @@ ExecutarTesteData();
 
 
 /*String*/
-
 ExecutarTesteString();
-
 
 
 static void ExecutarTesteTemperatura()
@@ -125,6 +124,15 @@ static void ExecutarTesteString()
 
     string concatDolar = $"vamos concatenar $ {ab}";
     Console.WriteLine(concatDolar);
+}
+
+static void TesteCondicoes()
+{
+    var returnComData = Condicoes.GetDiaSemana(DateTime.Today.ToString("d"));
+    Console.WriteLine($"Retorno com data: {returnComData}");
+
+    var returnComInt = Condicoes.GetDiaSemana(2);
+    Console.WriteLine($"Retorno com int: {returnComInt}");
 }
 
 /*

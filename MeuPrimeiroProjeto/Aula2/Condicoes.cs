@@ -1,13 +1,22 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace MeuPrimeiroProjeto.Aula2
+﻿namespace MeuPrimeiroProjeto.Aula2
 {
     internal class Condicoes
     {
+        internal static string GetDiaSemana(int DiaSemana)
+            => (DiaSemana) switch
+            {
+                (1) => "Segunda!",
+                (2) => "Terça!",
+                _ => "Todos os dias!"
+            };
+        public static string GetDiaSemana(string data)
+            => (data) switch
+            {
+                ("07/08/2024") => "É hoje!",
+                ("08/08/2024") => "É amanhã!",
+                _ => "Todo os dias!"
+            };
+
         /// <summary>
         /// 6 - Switch case com mais de uma opcao, com propriedades de classe GetDiasUteis
         /// </summary>
@@ -15,6 +24,8 @@ namespace MeuPrimeiroProjeto.Aula2
         /// <returns></returns>
         static string GetDiasUteis(clsDiasSemana dia) => dia switch
         {
+            //if(dia1 == "Segunda" && dia2 == "Quarta"){...}
+
             var (dia1, dia2) when dia1 == EnumDiaSemana.Segunda && dia2 == EnumDiaSemana.Quarta => "faço balé",
             var (dia1, dia2) when dia1 == EnumDiaSemana.Terca && dia2 == EnumDiaSemana.Quinta => "academia",
             var (dia1, dia2) when dia1 == EnumDiaSemana.Quarta && dia2 == EnumDiaSemana.Sexta => "Vou pro bar",
@@ -23,24 +34,19 @@ namespace MeuPrimeiroProjeto.Aula2
         };
 
         /// <summary>
-        /// 5 - Switch case Com duas condições RetornarDiasDeAula
+        /// Switch case Com uma condição RetornarDiasDeAula
         /// </summary>
         /// <param name="dia1"></param>
-        /// <param name="dia2"></param>
         /// <returns></returns>
-        public static string RetornarDiasDeAula(EnumDiaSemana dia1, EnumDiaSemana dia2)
-    => (dia1, dia2) switch
+        public static string RetornarDiasDeAula(EnumDiaSemana dia)
+    => (dia) switch
     {
-        (EnumDiaSemana.Segunda, EnumDiaSemana.Quarta) => "Faço balé",
-        (EnumDiaSemana.Terca, EnumDiaSemana.Quinta) => "Academia",
-        (EnumDiaSemana.Quarta, EnumDiaSemana.Sexta) => "Vou pro bar",
+        (EnumDiaSemana.Segunda) => "Início da semana",
+        (EnumDiaSemana.Terca) => "Semana caminhando",
+        (EnumDiaSemana.Quarta) => "Metade da semana",
         //default
-        (_, _) => "Dias não especificados"
-
-        //if(dia1 == "Segunda" && dia2 == "Quarta"){...}
+        (_) => "Dia da semana inválido!"
     };
-
-
 
         /// <summary>
         /// 4 - SwitchCase2
@@ -55,6 +61,7 @@ namespace MeuPrimeiroProjeto.Aula2
        EnumDiaSemana.Quarta => "Metade da Semana",
        EnumDiaSemana.Quinta => "Final de semana chegando",
        EnumDiaSemana.Sexta => "Sextou",
+       EnumDiaSemana.Sabado & EnumDiaSemana.Domingo => "Final de semana",
        _ => throw new ArgumentException(message: "Dias não uteis", paramName: nameof(diaSemana)),
    };
 
@@ -84,22 +91,30 @@ namespace MeuPrimeiroProjeto.Aula2
                 case EnumDiaSemana.Segunda:
                     retorno = "Iniciou a Semana";
                     break;
-                //return "string"
-                case EnumDiaSemana.Terca:
 
+                case EnumDiaSemana.Terca:
                     retorno = "Semana caminhando";
                     break;
+
                 case EnumDiaSemana.Quarta:
                     retorno = "Metade da semana";
                     break;
+
                 case EnumDiaSemana.Quinta:
                     retorno = "final de semana chegando!";
                     break;
+
                 case EnumDiaSemana.Sexta:
                     retorno = "sextou!";
                     break;
-                default:
+
+                case EnumDiaSemana.Sabado:
+                case EnumDiaSemana.Domingo:
                     retorno = "final de semana!";
+                    break;
+
+                default:
+                    retorno = "Dia da semana inválido!";
                     break;
             }
             return retorno;
@@ -113,66 +128,25 @@ namespace MeuPrimeiroProjeto.Aula2
         static string ExemploIF(EnumDiaSemana dia)
         {
             if (dia == EnumDiaSemana.Segunda)
-            {
                 return "Iniciou a semana";
-            }
+
             else if (dia == EnumDiaSemana.Terca)
-            {
                 return "Já estamos no caminho";
-            }
+
             else if (dia == EnumDiaSemana.Quarta)
-            {
                 return "Metade da semana já";
-            }
+
             else if (dia == EnumDiaSemana.Quinta)
-            {
                 return "final de semana chegando";
-            }
+
             else if (dia == EnumDiaSemana.Sexta)
-            {
                 return "sextou!";
-            }
+
+            else if (dia == EnumDiaSemana.NaoExiste)
+                return "não existe!";
+
             else
-            {
                 return "Final de semana!";
-            }
-
         }
-    }
-    public class clsDiasSemana
-    {
-        //propriedade enumerador
-        public EnumDiaSemana DiaSemanaProperty { get; set; }
-
-        public EnumDiaSemana Dia1 { get; set; }
-        public EnumDiaSemana Dia2 { get; set; }
-
-        public clsDiasSemana()
-        {
-        }
-
-        /*public clsDiasSemana(DiaUteisSemana dia1, DiaUteisSemana dia2)
-        {
-            Dia1 = dia1;
-            Dia2 = dia2;
-        }*/
-
-        //ou
-        public clsDiasSemana(EnumDiaSemana dia1, EnumDiaSemana dia2) => (Dia1, Dia2) = (dia1, dia2);
-
-        public void Deconstruct(out EnumDiaSemana dia1, out EnumDiaSemana dia2) =>
-            (dia1, dia2) = (Dia1, Dia2);
-    }
-
-    public enum EnumDiaSemana
-    {
-        Segunda = 1,
-        Terca = 2,
-        Quarta = 3,
-        Quinta = 4,
-        Sexta = 5,
-        Sabado = 6,
-        Domingo = 7,
-        NaoExiste = 8
     }
 }
