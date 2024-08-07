@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MeuPrimeiroProjeto
+namespace MeuPrimeiroProjeto.Aula1
 {
     internal class Exercicio1
     {
@@ -41,7 +41,7 @@ namespace MeuPrimeiroProjeto
                     return (temp - 32) * 5 / 9;
 
                 case "K":
-                    return (temp - 273.15);
+                    return temp - 273.15;
 
                 default:
                     return 0;

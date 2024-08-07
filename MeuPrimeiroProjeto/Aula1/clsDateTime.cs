@@ -1,6 +1,6 @@
-﻿namespace MeuPrimeiroProjeto
+﻿namespace MeuPrimeiroProjeto.Aula1
 {
-    internal class Data
+    internal class clsDateTime
     {
         internal void imprimirDatas()
         {

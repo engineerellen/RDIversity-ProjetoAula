@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Numerics;
 
-namespace MeuPrimeiroProjeto
+namespace MeuPrimeiroProjeto.Aula1
 {
     public class Utility
     {
@@ -19,19 +19,19 @@ namespace MeuPrimeiroProjeto
             else if (!IsNumeric(value2))
                 throw new ArgumentException("value2 is not a number.");
 
-            
+
             if (IsInteger(value1) && IsInteger(value2))
             {
                 BigInteger bigint1 = (BigInteger)value1;
                 BigInteger bigint2 = (BigInteger)value2;
                 return (NumericRelationship)BigInteger.Compare(bigint1, bigint2);
             }
-        
+
             else
 
             {
-                Double dbl1 = 0;
-                Double dbl2 = 0;
+                double dbl1 = 0;
+                double dbl2 = 0;
                 try
                 {
                     dbl1 = Convert.ToDouble(value1);
@@ -54,31 +54,31 @@ namespace MeuPrimeiroProjeto
 
         public static bool IsInteger(ValueType value)
         {
-            return (value is SByte || value is Int16 || value is Int32
-                    || value is Int64 || value is Byte || value is UInt16
-                    || value is UInt32 || value is UInt64
-                    || value is BigInteger);
+            return value is sbyte || value is short || value is int
+                    || value is long || value is byte || value is ushort
+                    || value is uint || value is ulong
+                    || value is BigInteger;
         }
 
         public static bool IsFloat(ValueType value)
         {
-            return (value is float || value is double || value is Decimal);
+            return value is float || value is double || value is decimal;
         }
 
         public static bool IsNumeric(ValueType value)
         {
-            return (value is Byte ||
-                    value is Int16 ||
-                    value is Int32 ||
-                    value is Int64 ||
-                    value is SByte ||
-                    value is UInt16 ||
-                    value is UInt32 ||
-                    value is UInt64 ||
+            return value is byte ||
+                    value is short ||
+                    value is int ||
+                    value is long ||
+                    value is sbyte ||
+                    value is ushort ||
+                    value is uint ||
+                    value is ulong ||
                     value is BigInteger ||
-                    value is Decimal ||
-                    value is Double ||
-                    value is Single);
+                    value is decimal ||
+                    value is double ||
+                    value is float;
         }
     }
 }
