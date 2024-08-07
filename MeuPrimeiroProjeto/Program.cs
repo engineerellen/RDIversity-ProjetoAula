@@ -2,6 +2,48 @@
 using MeuPrimeiroProjeto;
 using System.Text;
 
+Console.WriteLine("Insira a temperatura: ");
+Exercicio1 exercicio1 = new Exercicio1();
+string retorno = string.Empty;
+
+var temp = Console.ReadLine();
+
+if (string.IsNullOrEmpty(temp))
+{
+    Console.WriteLine("A temperatura é obrigatória!");
+    return;
+}
+
+
+if (!temp.Contains("ºC") && !temp.Contains("ºF") && !temp.Contains("K"))
+    Console.WriteLine("Temperatura inválida!");
+else
+{
+    int temperatura = 0;
+    var arrC = temp.Contains("ºC") ? temp.Split("ºC") : null;
+
+    int? temperaturaCelsius = arrC != null && int.TryParse(arrC[0], out temperatura) ? temperatura : null;
+
+    var arrF = temp.Contains("ºF") ? temp.Split("ºF") : null;
+    int? temperaturaF = arrF != null && int.TryParse(arrF[0], out temperatura) ? temperatura : null;
+
+    var arrK = temp.Contains("K") ? temp.Split("K") : null;
+    int? temperaturaK = arrK != null && int.TryParse(arrK[0], out temperatura) ? temperatura : null;
+
+    if (temperaturaCelsius != null)
+        retorno = exercicio1.CalcularTemperatura((int)temperaturaCelsius, "C");
+
+    if (temperaturaF != null)
+        retorno = exercicio1.CalcularTemperatura((int)temperaturaF, "F");
+
+    if (temperaturaK != null)
+        retorno = exercicio1.CalcularTemperatura((int)temperaturaK, "K");
+    Console.WriteLine(retorno);
+
+}
+
+
+
 /*
  tipos primitivos
 */
