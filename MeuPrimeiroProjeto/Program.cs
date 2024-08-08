@@ -2,10 +2,13 @@
 using MeuPrimeiroProjeto.Aula2;
 using System.Text;
 
-//Aula 2- condicoes
+//Aula 3 - estruturas de repeticoes - loops
+ExecutarLoops();
+
+//Aula 3- condicoes
 TesteCondicoes();
 
-//Exercicio - aula 1
+//Exercicio - aula 2
 ExecutarTesteTemperatura();
 
 /*
@@ -135,11 +138,30 @@ static void TesteCondicoes()
     Console.WriteLine($"Retorno com int: {returnComInt}");
 }
 
+static void ExecutarLoops()
+{
+    Console.WriteLine("foreach");
+    Arrays_Loops.TesteForEach();
+
+    Console.WriteLine("for");
+    Arrays_Loops.TesteFor();
+
+    Console.WriteLine("Continue");
+    Arrays_Loops.TesteContinue();
+
+    Console.WriteLine("Break");
+    Arrays_Loops.TesteBreak();
+
+    Console.WriteLine("Do While");
+    Arrays_Loops.PercorreDOWhile();
+
+    Console.WriteLine("While");
+    Arrays_Loops.PercorreWhile();
+}
+
 /*
  * Comentário de texto com mais de uma linha
  * ...
  * ....
  * 
  */
-
-

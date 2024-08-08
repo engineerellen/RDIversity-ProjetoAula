@@ -6,7 +6,6 @@ using System.Threading.Tasks;
 
 namespace MeuPrimeiroProjeto.Aula2
 {
-
     internal class Arrays_Loops
     {
         static string[] arrDiasSemana = new string[] { "Segunda", "Terça", "Quarta", "Quinta", "Sexta", "Sabado", "Domingo" };
@@ -17,15 +16,14 @@ namespace MeuPrimeiroProjeto.Aula2
         /// <summary>
         /// Foreach
         /// </summary>
-        private static void TesteForeach()
+        internal static void TesteForEach()
         {
             foreach (var item in arrDiasSemana)
             {
                 if (item == "Sabado")
                 {
-                    Console.WriteLine("Sabado é dia de dar banho no cachorro");
+                    Console.WriteLine("Sabado é dia de dar banho no cachorro.");
                 }
-
                 Console.WriteLine(item);
             }
         }
@@ -33,56 +31,63 @@ namespace MeuPrimeiroProjeto.Aula2
         /// <summary>
         /// For
         /// </summary>
-        private static void TEsteFor()
+        internal static void TesteFor()
         {
-            for (int indice = 0; indice <= arrayWhile.Length; indice++)
+            try
             {
-
-                if (arrayWhile[indice] == 3)
+                for (int indice = 0; indice <= arrayWhile.Length; indice++)
                 {
-                    Console.WriteLine("achei meu numero!");
-                    break;
+                    //if (arrayWhile[indice] == 3)
+                    //{
+                    //    Console.WriteLine("achei meu numero!");
+                    //    break;
+                    //}
+                    Console.WriteLine(arrayWhile[indice]);
                 }
-                Console.WriteLine(arrayWhile[indice]);
+            }
+            catch (IndexOutOfRangeException)
+            {
+                Console.WriteLine("O limite do array é de 4 posições!");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            finally
+            {
+                Console.WriteLine("For finalizado!");
             }
         }
 
         /// <summary>
         /// continue
         /// </summary>
-        private static void TEsteContinue()
+        internal static void TesteContinue()
         {
             int indice = 0;
             while (arrayWhile[indice] <= 5)
             {
                 if (arrayWhile[indice] == 3)
-                {
                     break;
-                }
-
                 if (arrayWhile[indice] < 4)
                 {
                     indice++;
+                    Console.WriteLine(arrayWhile[indice]);
                     continue;
                 }
-
-
-                Console.WriteLine(arrayWhile[indice]);
-
             }
         }
 
         /// <summary>
         /// Break
         /// </summary>
-        private static void TesteBreak()
+        internal static void TesteBreak()
         {
             int indice = 0;
             while (arrayWhile[indice] < 5)
             {
-
                 if (arrayWhile[indice] == 3)
-                { break; }
+                    break;
                 Console.WriteLine(arrayWhile[indice]);
                 indice++;
 
@@ -92,7 +97,7 @@ namespace MeuPrimeiroProjeto.Aula2
         /// <summary>
         /// Do While
         /// </summary>
-        private static void PercorreDOWhile()
+        internal static void PercorreDOWhile()
         {
             int indice = 0;
             do
@@ -106,16 +111,14 @@ namespace MeuPrimeiroProjeto.Aula2
         /// <summary>
         /// Whilie
         /// </summary>
-        private static void PercorreWhile()
+        internal static void PercorreWhile()
         {
             int indice = 0;
             while (arrayWhile[indice] < 5)
             {
                 Console.WriteLine(arrayWhile[indice]);
-                indice++;
-
+                indice++;//indice = indice + 1;
             }
-
         }
 
         //Apenas exemplo para mostrar as formas de inicializar um array
