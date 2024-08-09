@@ -4,11 +4,10 @@ using EstruturaDados.BinaryTree;
 using EstruturaDados.HashDictionary;
 using EstruturaDados.Pilha;
 
+//Dictionary
 DictionaryTest.TestDictionary();
 
-
-/*
- * //HashTable
+ //HashTable
 HashTableTest.TestHashTable();
 //List
 TesteLista();
@@ -31,7 +30,7 @@ LinkedList.PrioridadePostinho();
 Console.WriteLine("-------------------------------------------");
 
 BinaryTree.TestBinaryTree();
-*/
+
 
 static void TesteLista()
 {
