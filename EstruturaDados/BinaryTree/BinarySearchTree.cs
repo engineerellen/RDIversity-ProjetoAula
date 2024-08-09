@@ -20,6 +20,7 @@
         }
 
         // Método para realizar uma travessia em pré-ordem na árvore
+        //TODO:corrigir
         public void PreOrderTraversal(Node node)
         {
             if (node != null)

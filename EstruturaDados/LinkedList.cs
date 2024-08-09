@@ -24,5 +24,25 @@ namespace EstruturaDados
                 Console.WriteLine(mes);
             }
         }
+
+        internal static void PrioridadePostinho()
+        {
+            LinkedList<string> filaAtendimento = new LinkedList<string>();
+            filaAtendimento.AddLast("CidadaoComum1");
+            filaAtendimento.AddFirst("Idoso80Anos");
+
+            var cidadaoComum = filaAtendimento.Find("CidadaoComum1");
+
+            filaAtendimento.AddBefore(cidadaoComum, "MulherGravida");
+            filaAtendimento.AddAfter(cidadaoComum, "CidadaoComum2");
+
+            var node = new LinkedListNode<string>("CidadaoComum3");
+            filaAtendimento.AddLast(node);
+
+            foreach (string mes in filaAtendimento)
+            {
+                Console.WriteLine(mes);
+            }
+        }
     }
 }

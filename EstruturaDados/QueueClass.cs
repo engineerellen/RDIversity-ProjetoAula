@@ -1,13 +1,12 @@
 ﻿
-using System.Collections;
-
 namespace EstruturaDados
 {
     internal class QueueClass
     {
         internal static void TestQueue()
         {
-            Queue filaAtendimento = new Queue();
+            Queue<string> filaAtendimento = new Queue<string>();
+
             filaAtendimento.Enqueue("Margarida");
             filaAtendimento.Enqueue("Florinda");
             filaAtendimento.Enqueue("Josefa");
@@ -18,8 +17,11 @@ namespace EstruturaDados
             Console.WriteLine($"\tQuantidade :\t {filaAtendimento.Count}");
             Console.Write("\tQuem já chegou: ");
 
-            foreach (Object obj in filaAtendimento)
-                Console.Write($"\t{obj}");
+            foreach (var pessoa in filaAtendimento)
+                Console.WriteLine($"\t{pessoa}");
+
+            Console.WriteLine("O primeiro a ser atendido às 10h da manhã: ");
+            Console.WriteLine(filaAtendimento.Dequeue());
         }
     }
 }

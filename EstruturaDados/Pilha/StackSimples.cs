@@ -1,10 +1,9 @@
 ﻿using System.Collections;
 
-namespace EstruturaDados
+namespace EstruturaDados.Pilha
 {
     internal class StackSimples
     {
-
         internal static void TestarStackSimples()
         {
             Stack hq = new Stack();
@@ -16,11 +15,12 @@ namespace EstruturaDados
 
             Console.WriteLine("PilhaSimples\n");
             Console.WriteLine($"\tQuantidade :\t {hq.Count}");
-            Console.Write("\t Minhas Historias em quadrinhos empilhadas: ");
+            Console.WriteLine("\t Minhas Historias em quadrinhos empilhadas: ");
 
             foreach (var item in hq)
-                Console.Write($"\t{item}");
+                Console.WriteLine($"\t{item}");
 
+            Console.WriteLine(hq.Pop());
         }
     }
 }

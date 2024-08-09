@@ -4,7 +4,7 @@ namespace EstruturaDados
 {
     internal class ListTest
     {
-        internal static void TestList()
+        internal static List<string> TestList()
         {
             var list = new List<string>();
 
@@ -17,9 +17,16 @@ namespace EstruturaDados
 
             Console.WriteLine("Turma da galinha pintadinha: ");
             foreach (var item in list)
-            {
                 Console.WriteLine(item);
-            }
+
+            return list;
+        }
+
+        internal static List<string> AddList(string item, List<string> list)
+        {
+            list.Add(item);
+
+            return list;
         }
     }
 }
