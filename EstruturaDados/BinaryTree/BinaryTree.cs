@@ -19,13 +19,13 @@ namespace EstruturaDados.BinaryTree
             // Travessia da árvore
             Console.WriteLine("Arvore genealogica do baby shark:");
 
-            tree.PreOrderTraversal(tree.Root);
+            //tree.PreOrderTraversal(tree.Root);
 
-            //Console.WriteLine(tree.Root.Value);
-            //Console.WriteLine(tree.Root.Left.Value);
-            //Console.WriteLine(tree.Root.Right.Value);
-            //Console.WriteLine(tree.Root.Left.Left.Value);
-            //Console.WriteLine(tree.Root.Left.Right.Value);
+            Console.WriteLine(tree.Root.Value);
+            Console.WriteLine(tree.Root.Left.Value);
+            Console.WriteLine(tree.Root.Right.Value);
+            Console.WriteLine(tree.Root.Left.Left.Value);
+            Console.WriteLine(tree.Root.Left.Right.Value);
         }
     }
 }
