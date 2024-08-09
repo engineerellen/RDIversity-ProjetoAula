@@ -25,10 +25,14 @@ namespace EstruturaDados.HashDictionary
             {
                 //obtém os valores da HashTable usando Key e Value
                 string nome = (string)element.Key;
-                string lista = (string)element.Value;
+                string[] lista = (string[])element.Value;
+
+                Console.WriteLine(String.Format("Nome:{0} ", nome));
+
+                foreach (var item in lista)
+                    Console.WriteLine($"Lista: {item}");
 
                 //exibe os valores da HashTable
-                Console.WriteLine("Nome: {0}, Lsta: {1}", nome, lista);
                 Console.WriteLine("--------------------------");
             }
         }

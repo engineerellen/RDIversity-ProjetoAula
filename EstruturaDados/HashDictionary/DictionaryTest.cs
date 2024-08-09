@@ -19,8 +19,11 @@
 
             foreach (KeyValuePair<string, string[]> element in dictionary)
             {
-                Console.WriteLine("Nome(Key):- {0} and Lista(Value):- {1}",
-                                element.Key, element.Value);
+                foreach (var item in element.Value)
+                    Console.WriteLine("Nome(Key):- {0} and Lista(Value):- {1}",
+                                    element.Key, item);
+
+
                 Console.WriteLine("-------------------");
             }
         }

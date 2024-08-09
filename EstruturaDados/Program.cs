@@ -1,30 +1,37 @@
 ﻿
 using EstruturaDados;
 using EstruturaDados.BinaryTree;
+using EstruturaDados.HashDictionary;
 using EstruturaDados.Pilha;
 
+DictionaryTest.TestDictionary();
 
+
+/*
+ * //HashTable
+HashTableTest.TestHashTable();
 //List
-//TesteLista();
+TesteLista();
 
 Console.WriteLine("-------------------------------------------");
 
 //Pilha
-//TestePilha();
+TestePilha();
 
 Console.WriteLine("-------------------------------------------");
 
 //Fila
-//QueueClass.TestQueue();
+QueueClass.TestQueue();
 
 Console.WriteLine("-------------------------------------------");
 
 //LinkedList
-//LinkedList.PrioridadePostinho();
+LinkedList.PrioridadePostinho();
 
 Console.WriteLine("-------------------------------------------");
 
 BinaryTree.TestBinaryTree();
+*/
 
 static void TesteLista()
 {
