@@ -2,7 +2,7 @@
 using MeuPrimeiroProjeto.Aula2;
 using System.Text;
 
-//Aula 3 - estruturas de repeticoes - loops
+//Aula 3 - estruturas de repeticoes 
 ExecutarLoops();
 
 //Aula 3- condicoes
