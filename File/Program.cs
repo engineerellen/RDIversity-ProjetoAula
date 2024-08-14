@@ -1,13 +1,14 @@
 ﻿using File;
 
-ArquivoTest arquivo = new ArquivoTest();
-arquivo.WriteDirectoriesNamesFile();
+//StreamWrite - escrita de arquivo
 
-ArquivoTest objArquivo = new ArquivoTest(@"C:\arquivo", "teste.txt");
+Arquivo objArquivo = new Arquivo(@"C:\arquivo", "testeA.txt");
+objArquivo.WritePDFFile("Ebaaa !!! Escrevi num pê dê éfe!");
 
 objArquivo.WriteFile("Ebaaa !!! Escrevi num te xis tê!");
+
+objArquivo.WriteDirectoriesNamesFile();
 
 objArquivo.ReadFileBuffer();
 objArquivo.ReadToEnd();
 objArquivo.ReadFileByLine();
-

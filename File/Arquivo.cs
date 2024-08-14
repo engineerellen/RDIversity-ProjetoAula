@@ -1,6 +1,11 @@
-﻿namespace File
+﻿
+using iText.Kernel.Pdf;
+using iText.Layout;
+using iText.Layout.Element;
+
+namespace File
 {
-    internal class ArquivoTest
+    internal class Arquivo
     {
         private string _directory;
         private string _file;
@@ -29,13 +34,64 @@
             set { _file = value; }
         }
 
-        public ArquivoTest() { }
-        public ArquivoTest(string directoy, string file)
+        public Arquivo() { }
+        public Arquivo(string directoy, string file)
         {
             _directory = directoy;
             _file = file;
 
+            ValidarDiretorioArquivo();
+
             _path = Path.Combine(_directory, _file);
+        }
+
+        private void ValidarDiretorioArquivo()
+        {
+            if (!System.IO.Directory.Exists(_directory))
+            {
+                try
+                {
+                    System.IO.Directory.CreateDirectory(_directory);
+                }
+                catch (IOException ex)
+                {
+                    throw ex;
+                }
+                catch (Exception e)
+                {
+                    throw e;
+                }
+            }
+
+            if (!System.IO.File.Exists(_path))
+            {
+                throw new IOException("arquivo não existe!");
+            }
+        }
+
+        internal void WritePDFFile(string data)
+        {
+            try
+            {
+                var pdfWriter = new PdfWriter(_path);
+
+                var pdfDocument = new PdfDocument(pdfWriter);
+
+                using var document = new Document(pdfDocument);
+                document.Add(new Paragraph(data));
+            }
+            catch (iText.IO.Exceptions.IOException ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            finally
+            {
+                Console.WriteLine("Processo finalizado!");
+            }
         }
 
         internal void WriteFile(string data)
@@ -43,15 +99,23 @@
             try
             {
                 using (StreamWriter sw = new StreamWriter(_path))
+                {
                     sw.WriteLine(data);
+                    Console.WriteLine("Arquivo salvo com sucesso!");
+                }
+
             }
-            catch (IOException ex)
+            catch (System.IO.IOException ex)
             {
                 Console.WriteLine(ex.Message);
             }
             catch (Exception ex)
             {
                 Console.WriteLine(ex.Message);
+            }
+            finally
+            {
+                Console.WriteLine("Processo finalizado!");
             }
         }
 
@@ -62,7 +126,6 @@
                 using (StreamReader sr = new StreamReader(_path))
                 {
                     string line;
-
                     while ((line = sr.ReadLine()) != null)
                         Console.WriteLine(line);
                 }
@@ -97,7 +160,7 @@
             {
                 Console.WriteLine(ex.Message);
             }
-            finally 
+            finally
             {
                 Console.WriteLine("Processo finalizado!");
             }
@@ -132,7 +195,7 @@
             DirectoryInfo[] cDirs = new DirectoryInfo(@"C:\").GetDirectories();
 
             // Escreve o nome de cada pasta no arquivo
-            using (StreamWriter sw = new StreamWriter("CDriveDirs.txt"))
+            using (StreamWriter sw = new StreamWriter(_path))
             {
                 foreach (DirectoryInfo dir in cDirs)
                 {
@@ -142,7 +205,7 @@
 
             // Le e mostra cada pasta no console
             string line = "";
-            using (StreamReader sr = new StreamReader("CDriveDirs.txt"))
+            using (StreamReader sr = new StreamReader(_path))
             {
                 while ((line = sr.ReadLine()) != null)
                 {
