@@ -1,7 +1,12 @@
 ﻿
+using iText.IO.Image;
+using iText.Kernel.Colors;
 using iText.Kernel.Pdf;
+using iText.Kernel.Pdf.Action;
+using iText.Kernel.Pdf.Canvas.Draw;
 using iText.Layout;
 using iText.Layout.Element;
+using iText.Layout.Properties;
 
 namespace File
 {
@@ -40,12 +45,12 @@ namespace File
             _directory = directoy;
             _file = file;
 
-            ValidarDiretorioArquivo();
+            ValidarDiretorio();
 
             _path = Path.Combine(_directory, _file);
         }
 
-        private void ValidarDiretorioArquivo()
+        private void ValidarDiretorio()
         {
             if (!System.IO.Directory.Exists(_directory))
             {
@@ -63,6 +68,10 @@ namespace File
                 }
             }
 
+        }
+
+        private void ValidarArquivo()
+        {
             if (!System.IO.File.Exists(_path))
             {
                 throw new IOException("arquivo não existe!");
@@ -73,12 +82,91 @@ namespace File
         {
             try
             {
-                var pdfWriter = new PdfWriter(_path);
+                PdfWriter writer = new PdfWriter(_path);
+                PdfDocument pdf = new PdfDocument(writer);
+                Document document = new Document(pdf);
 
-                var pdfDocument = new PdfDocument(pdfWriter);
 
-                using var document = new Document(pdfDocument);
+                Paragraph header = new Paragraph("BEM VINDO")
+                   .SetTextAlignment(TextAlignment.CENTER)
+                   .SetFontSize(20);
+
+                document.Add(header);
+
+                Paragraph subheader = new Paragraph("PESSOAS QUERIDAS!")
+                        .SetTextAlignment(TextAlignment.CENTER)
+                        .SetFontSize(15);
+
+                document.Add(subheader);
+
+                LineSeparator ls = new LineSeparator(new SolidLine());
+                document.Add(ls);
+
                 document.Add(new Paragraph(data));
+
+                document.Add(ls);
+
+                Image img = new Image(ImageDataFactory
+                        .Create(@"C:\Users\Ellen\OneDrive\Imagens\123575931_3519258338150648_157569515198997980_n.jpg"))
+                        .SetTextAlignment(TextAlignment.CENTER);
+
+                document.Add(img);
+
+                Table table = new Table(2, false);
+                Cell cell11 = new Cell(1, 1)
+                   .SetBackgroundColor(ColorConstants.GRAY)
+                   .SetTextAlignment(TextAlignment.CENTER)
+                   .Add(new Paragraph("State"));
+                Cell cell12 = new Cell(1, 1)
+                   .SetBackgroundColor(ColorConstants.GRAY)
+                   .SetTextAlignment(TextAlignment.CENTER)
+                   .Add(new Paragraph("Capital"));
+
+                Cell cell21 = new Cell(1, 1)
+                   .SetTextAlignment(TextAlignment.CENTER)
+                   .Add(new Paragraph("New York"));
+                Cell cell22 = new Cell(1, 1)
+                   .SetTextAlignment(TextAlignment.CENTER)
+                   .Add(new Paragraph("Albany"));
+
+                Cell cell31 = new Cell(1, 1)
+                   .SetTextAlignment(TextAlignment.CENTER)
+                   .Add(new Paragraph("New Jersey"));
+                Cell cell32 = new Cell(1, 1)
+                   .SetTextAlignment(TextAlignment.CENTER)
+                   .Add(new Paragraph("Trenton"));
+
+                Cell cell41 = new Cell(1, 1)
+                   .SetTextAlignment(TextAlignment.CENTER)
+                   .Add(new Paragraph("California"));
+                Cell cell42 = new Cell(1, 1)
+                   .SetTextAlignment(TextAlignment.CENTER)
+                   .Add(new Paragraph("Sacramento"));
+
+                table.AddCell(cell11);
+                table.AddCell(cell12);
+                table.AddCell(cell21);
+                table.AddCell(cell22);
+                table.AddCell(cell31);
+                table.AddCell(cell32);
+                table.AddCell(cell41);
+                table.AddCell(cell42);
+
+                document.Add(ls);
+                document.Add(table);
+
+                // Hyper link
+                Link link = new Link("click here",
+                   PdfAction.CreateURI("https://www.google.com"));
+                Paragraph hyperLink = new Paragraph("Please ")
+                   .Add(link.SetBold().SetUnderline()
+                   .SetItalic().SetFontColor(ColorConstants.BLUE))
+                   .Add(" to go www.google.com.");
+
+                document.Add(ls);
+                document.Add(hyperLink);
+
+                document.Close();
             }
             catch (iText.IO.Exceptions.IOException ex)
             {
@@ -123,6 +211,8 @@ namespace File
         {
             try
             {
+                ValidarArquivo();
+
                 using (StreamReader sr = new StreamReader(_path))
                 {
                     string line;
@@ -145,6 +235,8 @@ namespace File
         {
             try
             {
+                ValidarArquivo();
+
                 using StreamReader reader = new(_path);
 
                 string text = reader.ReadToEnd();
@@ -168,6 +260,8 @@ namespace File
 
         internal void ReadFileBuffer()
         {
+            ValidarArquivo();
+
             Char[] buffer;
 
             try
