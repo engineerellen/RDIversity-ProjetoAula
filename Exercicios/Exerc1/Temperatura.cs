@@ -4,11 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MeuPrimeiroProjeto.Aula1
+namespace Exerc1.Aula1
 {
-    internal class Exercicio1
+    public class Temperatura
     {
-        internal string CalcularTemperatura(double temp, string unidade)
+        public string CalcularTemperatura(double temp, string unidade)
         {
             var temper = ConvertToCelsius(temp, unidade);
 
@@ -36,15 +36,15 @@ namespace MeuPrimeiroProjeto.Aula1
             {
                 case "C":
                     return temp;
-                case "F":
 
+                case "F":
                     return (temp - 32) * 5 / 9;
 
                 case "K":
                     return temp - 273.15;
 
                 default:
-                    return 0;
+                    throw new Exception("Unidade de temperatura não existente!");
             }
         }
 

@@ -1,71 +1,72 @@
-﻿using MeuPrimeiroProjeto.Aula1;
+﻿using Exerc1.Aula1;
+using MeuPrimeiroProjeto.Aula1;
 using MeuPrimeiroProjeto.Aula2;
 using System.Text;
 
+//Exercicio - aula 2
+ExecutarTesteTemperatura();
+
+/*
 //Aula 3 - estruturas de repeticoes 
 ExecutarLoops();
 
 //Aula 3- condicoes
 TesteCondicoes();
 
-//Exercicio - aula 2
-ExecutarTesteTemperatura();
 
-/*
- tipos primitivos
-*/
+
+ //tipos primitivos
 ExecutarTiposPrimitivos();
 
 
-/*tipo data*/
+//tipo data
 ExecutarTesteData();
 
-
-/*String*/
+//String
 ExecutarTesteString();
+*/
 
 
 static void ExecutarTesteTemperatura()
 {
-    Console.WriteLine("Insira a temperatura: ");
-    Exercicio1 exercicio1 = new Exercicio1();
+    Console.WriteLine("Insira o valor da temperatura: ");
+    Temperatura objTemperatura = new Temperatura();
     string retorno = string.Empty;
+    double temperatura = 0;
 
     var temp = Console.ReadLine();
 
     if (string.IsNullOrEmpty(temp))
     {
-        Console.WriteLine("A temperatura é obrigatória!");
+        Console.WriteLine("O valor da temperatura é obrigatório!");
         return;
     }
 
+    Console.WriteLine("Insira a unidade da temperatura: ");
 
-    if (!temp.Contains("ºC") && !temp.Contains("ºF") && !temp.Contains("K"))
-        Console.WriteLine("Temperatura inválida!");
-    else
+    var unidade = Console.ReadLine();
+
+    if (string.IsNullOrEmpty(unidade))
     {
-        int temperatura = 0;
-        var arrC = temp.Contains("ºC") ? temp.Split("ºC") : null;
-
-        int? temperaturaCelsius = arrC != null && int.TryParse(arrC[0], out temperatura) ? temperatura : null;
-
-        var arrF = temp.Contains("ºF") ? temp.Split("ºF") : null;
-        int? temperaturaF = arrF != null && int.TryParse(arrF[0], out temperatura) ? temperatura : null;
-
-        var arrK = temp.Contains("K") ? temp.Split("K") : null;
-        int? temperaturaK = arrK != null && int.TryParse(arrK[0], out temperatura) ? temperatura : null;
-
-        if (temperaturaCelsius != null)
-            retorno = exercicio1.CalcularTemperatura((int)temperaturaCelsius, "C");
-
-        if (temperaturaF != null)
-            retorno = exercicio1.CalcularTemperatura((int)temperaturaF, "F");
-
-        if (temperaturaK != null)
-            retorno = exercicio1.CalcularTemperatura((int)temperaturaK, "K");
-        Console.WriteLine(retorno);
-
+        Console.WriteLine("A unidade da temperatura é obrigatória!");
+        return;
     }
+
+    if (!unidade.Contains("C") && !unidade.Contains("F") && !unidade.Contains("K"))
+    {
+        Console.WriteLine("Temperatura inválida!");
+        return;
+    }
+
+    if(!double.TryParse(temp, out temperatura))
+    {
+        Console.WriteLine("Temperatura inválida!");
+        return;
+    }
+
+    retorno = objTemperatura.CalcularTemperatura(temperatura, unidade);
+
+     Console.WriteLine(retorno);
 }
 
 static void ExecutarTiposPrimitivos()
