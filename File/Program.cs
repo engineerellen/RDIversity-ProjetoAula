@@ -5,10 +5,10 @@
 Arquivo objArquivo = new Arquivo(@"C:\arquivo", "testeB.pdf");
 objArquivo.WritePDFFile("Ebaaa !!! Escrevi num pê dê éfe!");
 
-//objArquivo.WriteFile("Ebaaa !!! Escrevi num te xis tê!");
+objArquivo.WriteFile("Ebaaa !!! Escrevi num te xis tê!");
 
-//objArquivo.WriteDirectoriesNamesFile();
+objArquivo.WriteDirectoriesNamesFile();
 
-//objArquivo.ReadFileBuffer();
-//objArquivo.ReadToEnd();
-//objArquivo.ReadFileByLine();
+objArquivo.ReadFileBuffer();
+objArquivo.ReadToEnd();
+objArquivo.ReadFileByLine();
